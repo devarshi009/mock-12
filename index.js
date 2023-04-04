@@ -5,6 +5,7 @@ const { connection } = require("./config/db");
 const { authenticate } = require("./Middleware/authenticate.middleware");
 
 const { userRouter } = require("./Routes/User.route");
+const { router } = require("./Routes/calculate.route");
 
 const app = express();
 require("dotenv").config();
@@ -20,8 +21,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", userRouter);
-app.use(authenticate);
-// app.use("/api",router)
+// app.use(authenticate);
+ app.use("/api",router)
 app.listen(process.env.PORT, async (req, res) => {
   try {
     await connection;
